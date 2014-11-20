@@ -22,6 +22,8 @@
     <string name="btn_9">9</string>
     <string name="btn_back">BACK</string>
     <string name="btn_ocd">OCD</string>
+    
+    <!-- string name="btn_ocd">OCD</string-->
 
     
 </resources>

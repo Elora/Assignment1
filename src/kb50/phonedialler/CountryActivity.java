@@ -10,14 +10,19 @@ import android.widget.TextView;
 
 public class CountryActivity extends Activity {
 	private TextView country;	
+	private TextView number;	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_country);
-		//Intent i = getIntent();
-		//String phoneNumber = getCountry(i.getStringExtra("test"));
-		//country.setText(phoneNumber);
+		
+		number = (TextView) findViewById(R.id.number1);
+		number.setText(getIntent().getStringExtra("tel"));
+		
+		country = (TextView) findViewById(R.id.country1);
+		String phoneNumber = getCountry(getIntent().getStringExtra("tel"));
+		country.setText(phoneNumber);
 	}
 	
 	@Override

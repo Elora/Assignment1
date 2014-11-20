@@ -13,12 +13,14 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	private EditText phoneField;
+	private Intent i;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         phoneField = (EditText) findViewById(R.id.phone_input);
+        i = new Intent("kb50.PhoneDialler.CountryActivity");
     }
 
 
@@ -44,9 +46,8 @@ public class MainActivity extends Activity {
     public void onClick(View v){
     	switch(v.getId()){
     		case R.id.show_country:
-    			//String phone = phoneField.getText().toString();
-    			Intent i = new Intent(this, CountryActivity.class);
-    			//i.putExtra("test", phone);
+    			//String phone = ;
+    			i.putExtra("tel", phoneField.getText().toString());
     			startActivity(i);
     		break;
     		case R.id.btn_1:

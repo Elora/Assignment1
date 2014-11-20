@@ -26,8 +26,8 @@
             android:name=".CountryActivity"
             android:label="@string/title_activity_country" >
             <intent-filter>
-                <action android:name="kb50.CountryActivity" />
-                <category android:name="android.intent.action.DEFAULT" />
+                <action android:name="kb50.PhoneDialler.CountryActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
     </application>

@@ -22,7 +22,9 @@
     <string name="btn_call">Call</string>
 
     <string name="country">Something is messed up!</string>
-
+	<string name="numberph">Number</string>
+    
+    
     <string name="title_activity_country">CountryActivity</string>
     <string name="hello_world">Hello world!</string>
 

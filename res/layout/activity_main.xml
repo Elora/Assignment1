@@ -21,7 +21,8 @@
         android:id="@+id/show_country"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btn_country"/>
+        android:text="@string/btn_country"
+        android:onClick="onClick" />
     
     <LinearLayout
         android:layout_width="fill_parent"
@@ -34,6 +35,7 @@
             android:layout_width="wrap_content"
        		android:layout_height="wrap_content"
        		android:text="@string/btn_1"
+       		android:onClick="onClick"
             style="?android:attr/buttonStyleSmall"
             />
         
@@ -42,6 +44,7 @@
             android:layout_width="wrap_content"
        		android:layout_height="wrap_content"
        		android:text="@string/btn_2"
+       		android:onClick="onClick"
             style="?android:attr/buttonStyleSmall"
             />
         
@@ -50,6 +53,7 @@
             android:layout_width="wrap_content"
        		android:layout_height="wrap_content"
        		android:text="@string/btn_3"
+       		android:onClick="onClick"
             style="?android:attr/buttonStyleSmall"
             />
         
@@ -66,6 +70,7 @@
             android:layout_width="wrap_content"
        		android:layout_height="wrap_content"
        		android:text="@string/btn_4"
+       		android:onClick="onClick"
             style="?android:attr/buttonStyleSmall"
             />
         
@@ -74,6 +79,7 @@
             android:layout_width="wrap_content"
        		android:layout_height="wrap_content"
        		android:text="@string/btn_5"
+       		android:onClick="onClick"
             style="?android:attr/buttonStyleSmall"
             />
         
@@ -82,6 +88,7 @@
             android:layout_width="wrap_content"
        		android:layout_height="wrap_content"
        		android:text="@string/btn_6"
+       		android:onClick="onClick"
             style="?android:attr/buttonStyleSmall"
             />
         
@@ -98,6 +105,7 @@
             android:layout_width="wrap_content"
        		android:layout_height="wrap_content"
        		android:text="@string/btn_7"
+       		android:onClick="onClick"
             style="?android:attr/buttonStyleSmall"
             />
         
@@ -106,6 +114,7 @@
             android:layout_width="wrap_content"
        		android:layout_height="wrap_content"
        		android:text="@string/btn_8"
+       		android:onClick="onClick"
             style="?android:attr/buttonStyleSmall"
             />
         
@@ -114,6 +123,7 @@
             android:layout_width="wrap_content"
        		android:layout_height="wrap_content"
        		android:text="@string/btn_9"
+       		android:onClick="onClick"
             style="?android:attr/buttonStyleSmall"
             />
         
@@ -130,6 +140,7 @@
             android:layout_width="wrap_content"
        		android:layout_height="wrap_content"
        		android:text="@string/btn_ocd"
+       		android:onClick="onClick"
             style="?android:attr/buttonStyleSmall"
             />
         
@@ -138,6 +149,7 @@
             android:layout_width="wrap_content"
        		android:layout_height="wrap_content"
        		android:text="@string/btn_0"
+       		android:onClick="onClick"
             style="?android:attr/buttonStyleSmall"
             />
         
@@ -146,6 +158,7 @@
             android:layout_width="wrap_content"
        		android:layout_height="wrap_content"
        		android:text="@string/btn_back"
+       		android:onClick="onClick"
             style="?android:attr/buttonStyleSmall"
             />
         

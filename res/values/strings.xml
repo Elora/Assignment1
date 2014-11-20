@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">PhoneDialler</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="phone_number">Enter phone number</string>
     <string name="action_settings">Settings</string>
 
 </resources>

@@ -22,6 +22,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".CountryActivity"
+            android:label="@string/title_activity_country" >
+            <intent-filter>
+                <action android:name="kb50.CountryActivity" />
+                <category android:name="android.intent.action.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

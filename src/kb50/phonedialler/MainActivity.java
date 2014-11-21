@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.Selection;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,22 +15,26 @@ import android.widget.Toast;
 public class MainActivity extends Activity {
 	private EditText phoneFieldCountry;
 	private EditText phoneFieldNumber;
-	private Intent i;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		i = new Intent("kb50.PhoneDialler.CountryActivity");
+		
+		//Initialize global variables 
 		phoneFieldCountry = (EditText) findViewById(R.id.phone_input_country);
 		phoneFieldNumber = (EditText) findViewById(R.id.phone_input_number);
-
+		
+		//Disable soft keyboard
+		phoneFieldCountry.setRawInputType(InputType.TYPE_CLASS_TEXT);
+		phoneFieldCountry.setTextIsSelectable(true);
+		
+		phoneFieldNumber.setRawInputType(InputType.TYPE_CLASS_TEXT);
+		phoneFieldNumber.setTextIsSelectable(true);		
 	}
 
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
 		phoneFieldNumber = (EditText) findViewById(R.id.phone_input_number);
-	
 	}
 
 	@Override
@@ -54,14 +59,18 @@ public class MainActivity extends Activity {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.show_country:
-			String tel = phoneFieldCountry.getText().toString();
-			if (tel.startsWith("00")) {
-
-				tel = tel.substring(2);
-
+			Intent i = new Intent("kb50.PhoneDailer.CountryActivity");
+			
+			String countryCode = phoneFieldCountry.getText().toString();			
+			String phoneNumber = phoneFieldNumber.getText().toString();
+			
+			if (countryCode.startsWith("00")) {
+				countryCode = countryCode.substring(2);
 			}
-			i.putExtra("tel_country", tel);
-			i.putExtra("tel_number", phoneFieldNumber.getText().toString());
+			
+			i.putExtra("tel_country", countryCode);
+			i.putExtra("tel_number", phoneNumber);
+			
 			startActivityForResult(i, 1);
 			break;
 		case R.id.btn_1:
@@ -125,7 +134,6 @@ public class MainActivity extends Activity {
 			Toast toast = Toast.makeText(context, text, duration);
 			toast.show();
 		}
-
 	}
 
 	private void remove_text() {
@@ -157,6 +165,5 @@ public class MainActivity extends Activity {
 			Toast toast = Toast.makeText(context, text, duration);
 			toast.show();
 		}
-
 	}
 }

@@ -19,7 +19,6 @@ public class CountryActivity extends Activity {
 
 	private TextView country;
 	private TextView number;
-	private Intent back;
 	private String countryNum;
 	private String phoneNum;
 	private String callNum;
@@ -28,20 +27,18 @@ public class CountryActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_country);
-		back = new Intent();
-
+		
+		//Retrieving the country code and phone number from the intent
 		countryNum = getIntent().getStringExtra("tel_country");
 		phoneNum = getIntent().getStringExtra("tel_number");
 		callNum = countryNum + phoneNum;
 
+		//Displaying the phone number in a textview
 		number = (TextView) findViewById(R.id.number1);
-
 		number.setText(callNum);
 
+		//Retrieving and displaying country name in textview
 		country = (TextView) findViewById(R.id.country1);
-
-		back.putExtra("backValue", callNum);
-
 		country.setText(getCountry("+" + callNum));
 
 	}
@@ -65,56 +62,45 @@ public class CountryActivity extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	private String getCountry(String phoneNumber) {
-
+	private String getCountry(String phoneNumber){
 		PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
 		String country = "";
 		try {
-
 			PhoneNumber telNummer = phoneUtil.parse(phoneNumber, "");
 			int countryCode = telNummer.getCountryCode();
-			if (!phoneUtil.isValidNumber(telNummer)) {
+			if(!phoneUtil.isValidNumber(telNummer)){
 				country = "Nummer is niet geldig!";
-			} else {
+			}else{
 				Locale l = new Locale("",
 						phoneUtil.getRegionCodeForNumber(telNummer));
 				country = "Country - " + l.getDisplayCountry()
 						+ System.getProperty("line.separator") + "Code -  +"
 						+ countryCode;
-
 			}
-
-		} catch (NumberParseException e) {
-			country = "Voer een geldig nummer in!";
+		}catch(NumberParseException e){
+			country = "The phone number you entered isn't valid. Try again.";
 		}
 		return country;
-
 	}
 
-	public void countryOnClick(View v) {
-		
-		try {
+	public void countryOnClick(View v){
+		try{
 			switch (v.getId()) {
-			case R.id.countryButtonBack:
-				setResult(1, back);
-				finish();
-				break;
-			case R.id.countryButtonCall:
-				
-				Intent call = new Intent(Intent.ACTION_CALL);
-				call.setData(Uri.parse("tel:" + "+"+callNum));
-				startActivity(call);
-				
-				break;
+				case R.id.countryButtonBack:
+					Intent back = new Intent();
+					back.putExtra("backValue", callNum);
+					setResult(1, back);
+					finish();
+					break;
+				case R.id.countryButtonCall:
+					Intent call = new Intent(Intent.ACTION_CALL);
+					call.setData(Uri.parse("tel:" + "+"+callNum));
+					startActivity(call);
+					break;
 			}
-			
 		}
 		catch(IllegalStateException e){
-			
 			System.out.println(e);
-			
 		}
-	
 	}
-
 }

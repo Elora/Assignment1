@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">PhoneDialler</string>
+    <string name="app_name">PhoneDailer</string>
     <string name="plus">+</string>
     <string name="phone_number">Enter phone number</string>
     <string name="action_settings">Settings</string>

@@ -2,6 +2,7 @@ package kb50.phonedialler;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,15 +11,22 @@ import android.widget.TextView;
 
 public class CountryActivity extends Activity {
 	private TextView country;	
-	private TextView number;	
+	private TextView number;
+	private String countryNum;
+	private String phoneNum;
+	private String callNum;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_country);
 		
+		countryNum = getIntent().getStringExtra("tel_country"); 
+		phoneNum = getIntent().getStringExtra("tel_number");
+		callNum = countryNum + phoneNum;
+		
 		number = (TextView) findViewById(R.id.number1);
-		number.setText((getIntent().getStringExtra("tel_country"))+" " + (getIntent().getStringExtra("tel_number")));
+		number.setText((getIntent().getStringExtra("tel_country")) + (getIntent().getStringExtra("tel_number")));
 		
 		country = (TextView) findViewById(R.id.country1);
 		String phoneNumber = getCountry(getIntent().getStringExtra("tel_country"));
@@ -79,7 +87,9 @@ public class CountryActivity extends Activity {
 			startActivity(new Intent(this, MainActivity.class));
 		break;
 		case R.id.countryButtonCall:
-			//call the number
+			Intent call = new Intent(Intent.ACTION_CALL);
+			call.setData(Uri.parse("tel:" + callNum));
+			startActivity(call);
 		break;
     	}
     }

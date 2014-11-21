@@ -16,26 +16,33 @@ import android.view.View;
 import android.widget.TextView;
 
 public class CountryActivity extends Activity {
+
 	private TextView country;
 	private TextView number;
 	private Intent back;
+	private String countryNum;
+	private String phoneNum;
+	private String callNum;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_country);
 		back = new Intent();
-		
+
+		countryNum = getIntent().getStringExtra("tel_country");
+		phoneNum = getIntent().getStringExtra("tel_number");
+		callNum = countryNum + phoneNum;
+
 		number = (TextView) findViewById(R.id.number1);
 
-		number.setText((getIntent().getStringExtra("tel_country")) + " "
-				+ (getIntent().getStringExtra("tel_number")));
+		number.setText(callNum);
 
 		country = (TextView) findViewById(R.id.country1);
-		String phoneNumber = number.getText().toString();
-		back.putExtra("backValue", phoneNumber);
-		
-		country.setText(getCountry("+" + phoneNumber));
+
+		back.putExtra("backValue", callNum);
+
+		country.setText(getCountry("+" + callNum));
 
 	}
 
@@ -85,14 +92,29 @@ public class CountryActivity extends Activity {
 	}
 
 	public void countryOnClick(View v) {
-		switch (v.getId()) {
-		case R.id.countryButtonBack:
-			setResult(1,back);
-			finish();
-			break;
-		case R.id.countryButtonCall:
-			// call the number
-			break;
+		
+		try {
+			switch (v.getId()) {
+			case R.id.countryButtonBack:
+				setResult(1, back);
+				finish();
+				break;
+			case R.id.countryButtonCall:
+				
+				Intent call = new Intent(Intent.ACTION_CALL);
+				call.setData(Uri.parse("tel:" + "+"+callNum));
+				startActivity(call);
+				
+				break;
+			}
+			
 		}
+		catch(IllegalStateException e){
+			
+			System.out.println(e);
+			
+		}
+	
 	}
+
 }

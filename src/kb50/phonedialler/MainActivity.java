@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Selection;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,14 +13,16 @@ import android.widget.Toast;
 
 
 public class MainActivity extends Activity {
-	private EditText phoneField;
+	private EditText phoneFieldCountry;
+	private EditText phoneFieldNumber;
 	private Intent i;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        phoneField = (EditText) findViewById(R.id.phone_input);
+        phoneFieldCountry = (EditText) findViewById(R.id.phone_input_country);
+        phoneFieldNumber = (EditText) findViewById(R.id.phone_input_number);
         i = new Intent("kb50.PhoneDialler.CountryActivity");
     }
 
@@ -46,49 +49,43 @@ public class MainActivity extends Activity {
     public void onClick(View v){
     	switch(v.getId()){
     		case R.id.show_country:
-    			//String phone = ;
-    			i.putExtra("tel", phoneField.getText().toString());
+    			i.putExtra("tel_country", phoneFieldCountry.getText().toString());
+    			i.putExtra("tel_number", phoneFieldNumber.getText().toString());
     			startActivity(i);
-    		break;
+    			break;
     		case R.id.btn_1:
-    			phoneField.setText(phoneField.getText() + "1");
-    		break;
+    			place_text("1");
+    			break;
     		case R.id.btn_2:
-    			phoneField.setText(phoneField.getText() + "2");
-    		break;
+    			place_text("2");
+    			break;
     		case R.id.btn_3:
-    			phoneField.setText(phoneField.getText() + "3");
-    		break;
+    			place_text("3");
+    			break;
     		case R.id.btn_4:
-    			phoneField.setText(phoneField.getText() + "4");
-    		break;
+    			place_text("4");
+    			break;
     		case R.id.btn_5:
-    			phoneField.setText(phoneField.getText() + "5");
-    		break;
+    			place_text("5");
+    			break;
     		case R.id.btn_6:
-    			phoneField.setText(phoneField.getText() + "6");
-    		break;
+    			place_text("6");
+    			break;
     		case R.id.btn_7:
-    			phoneField.setText(phoneField.getText() + "7");
-    		break;
+    			place_text("7");
+    			break;
     		case R.id.btn_8:
-    			phoneField.setText(phoneField.getText() + "8");
-    		break;
+    			place_text("8");
+    			break;
     		case R.id.btn_9:
-    			phoneField.setText(phoneField.getText() + "9");
-    		break;
+    			place_text("9");
+    			break;
     		case R.id.btn_0:
-    			phoneField.setText(phoneField.getText() + "0");
-    		break;
+    			place_text("0");
+    			break;
     		case R.id.btn_back:
-    			String phrase = phoneField.getText().toString();
-    			String rephrase = "";
-    			
-    			if(phrase.length() >= 1){
-    				rephrase = phrase.substring(0, phrase.length() - 1);
-    				phoneField.setText(rephrase);
-    			}
-    		break;
+    			remove_text();
+    			break;
     		case R.id.btn_ocd:
     			Context context = getApplicationContext();
     			CharSequence text = "I'm filler...";
@@ -96,7 +93,65 @@ public class MainActivity extends Activity {
     			
     			Toast toast = Toast.makeText(context, text, duration);
     			toast.show();
-    		break;    		
+    			break;    		
     	}
+    }
+
+    private void place_text(String number){
+    	if (phoneFieldCountry.isFocused()){
+    		phoneFieldCountry.setText(phoneFieldCountry.getText() + number);
+    		int position = phoneFieldCountry.length();
+        	Selection.setSelection(phoneFieldCountry.getText(),position);
+    	}
+    	else if (phoneFieldNumber.isFocused()){
+    		phoneFieldNumber.setText(phoneFieldNumber.getText() + number);
+    		int position = phoneFieldNumber.length();
+        	Selection.setSelection(phoneFieldNumber.getText(),position);
+    	}
+    	else{
+    		Context context = getApplicationContext();
+			CharSequence text = "Select a field please";
+			int duration = Toast.LENGTH_SHORT;
+			
+			Toast toast = Toast.makeText(context, text, duration);
+			toast.show();
+    	}
+    	
+    }
+    
+    private void remove_text(){
+    	if (phoneFieldCountry.isFocused()){
+    		String phrase = phoneFieldCountry.getText().toString();
+			String rephrase = "";
+			
+			if(phrase.length() >= 1){
+				rephrase = phrase.substring(0, phrase.length() - 1);
+				phoneFieldCountry.setText(rephrase);
+			}
+			int position = phoneFieldCountry.length();
+        	Selection.setSelection(phoneFieldCountry.getText(),position);
+    	}
+    	else if (phoneFieldNumber.isFocused()){
+    		String phrase = phoneFieldNumber.getText().toString();
+			String rephrase = "";
+			
+			if(phrase.length() >= 1){
+				rephrase = phrase.substring(0, phrase.length() - 1);
+				phoneFieldNumber.setText(rephrase);
+			}
+			int position = phoneFieldNumber.length();
+	    	Selection.setSelection(phoneFieldNumber.getText(),position);
+    	}
+    	else{
+    		Context context = getApplicationContext();
+			CharSequence text = "Select a field please";
+			int duration = Toast.LENGTH_SHORT;
+			
+			Toast toast = Toast.makeText(context, text, duration);
+			toast.show();
+    	}
+    	
+    	
+    	
     }
 }

@@ -18,10 +18,10 @@ public class CountryActivity extends Activity {
 		setContentView(R.layout.activity_country);
 		
 		number = (TextView) findViewById(R.id.number1);
-		number.setText(getIntent().getStringExtra("tel"));
+		number.setText((getIntent().getStringExtra("tel_country"))+" " + (getIntent().getStringExtra("tel_number")));
 		
 		country = (TextView) findViewById(R.id.country1);
-		String phoneNumber = getCountry(getIntent().getStringExtra("tel"));
+		String phoneNumber = getCountry(getIntent().getStringExtra("tel_country"));
 		country.setText(phoneNumber);
 	}
 	
@@ -45,7 +45,7 @@ public class CountryActivity extends Activity {
 	}
 	
     private String getCountry(String phoneNumber){
-    	int countrycode = Integer.parseInt(phoneNumber.substring(0, 2));
+    	int countrycode = Integer.parseInt(phoneNumber);
     	String country = "";
     	switch(countrycode){
     		case 30:
